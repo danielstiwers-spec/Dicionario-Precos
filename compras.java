@@ -14,18 +14,26 @@ public class compras{
         nomesProdutos.put("78920", "Café");
         nomesProdutos.put("78930", "Azeite");
 
-        try (Scanner scanner = new Scanner(System.in)) {
-            System.out.println("Digite o código de barras):");
-            String codigoBarras = scanner.nextLine();
+            try (Scanner scanner = new Scanner(System.in)) {
+                String resp;
+                do{
+                    System.out.print("Digite o código de barras: ");
+                    String codigoBarras = scanner.nextLine();
 
-            if (tabelaPrecos.containsKey(codigoBarras)) {
-                String nomeProduto = nomesProdutos.get(codigoBarras);
-                Double preco = tabelaPrecos.get(codigoBarras);
-                System.out.printf("Produto localizado! %s - Preço: R$ %.2f%n", nomeProduto, preco);
-            } else {
-                System.out.println("Código de barras não identificado. Procure suporte para mais informações.");
-            }
-        }
+                    if (tabelaPrecos.containsKey(codigoBarras)) {
+                    String nomeProduto = nomesProdutos.get(codigoBarras);
+                    Double preco = tabelaPrecos.get(codigoBarras);
+                    System.out.printf("Produto localizado. | %s - Preço: R$%.2f%n", nomeProduto, preco);
+                    } else {
+                        System.out.println("Código de barras não identificado. Procure suporte para mais informações.");
+                    }
+                    System.out.print("Deseja continuar? [S/N]: ");
+                    resp = scanner.nextLine();
+                } while (resp.equalsIgnoreCase("S"));
+            
+        }   
+
+        
     }
     
 }
